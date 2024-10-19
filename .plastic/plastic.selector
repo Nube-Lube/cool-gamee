@@ -1,0 +1,4 @@
+repository "cool game@NubeLube@cloud"
+  path "/"
+    br "/main"
+    co "/main"
