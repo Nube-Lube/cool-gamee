@@ -155,7 +155,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.006
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -266,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 159979731}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -40, z: 0}
+  m_LocalPosition: {x: 7, y: 20, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,6 +286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1067176107}
   playerMouse: {x: 0, y: 0}
+  capCollider: {fileID: 0}
+  movementSpeed: 1
+  rb: {fileID: 159979733}
   isPlayer1: 0
 --- !u!1 &215863806
 GameObject:
@@ -734,7 +737,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.006
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -865,6 +868,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1067176107}
   playerMouse: {x: 0, y: 0}
+  capCollider: {fileID: 0}
+  movementSpeed: 1
+  rb: {fileID: 670568992}
   isPlayer1: 1
 --- !u!1 &854953694
 GameObject:
@@ -1189,7 +1195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd80755d68515c4fb9fc677b5243467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUnit: {fileID: 0}
+  playerUnit: {fileID: 646125331}
+  player1Hold: {fileID: 670568991}
+  player2Hold: {fileID: 159979731}
 --- !u!4 &1067176108
 Transform:
   m_ObjectHideFlags: 0
