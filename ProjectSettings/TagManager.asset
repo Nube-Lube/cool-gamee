@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - unit
+  - Terrain
   layers:
   - Default
   - TransparentFX

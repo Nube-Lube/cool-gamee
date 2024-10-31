@@ -6,7 +6,6 @@ public class unitPlaceScript : MonoBehaviour
 {
     public GameController gameController;
     public Vector2 playerMouse;
-    public CapsuleCollider capCollider;
     public float movementSpeed;
     public Rigidbody2D rb;
     public bool isPlayer1;
@@ -23,7 +22,7 @@ public class unitPlaceScript : MonoBehaviour
         switch (isPlayer1)
         {
             case true:
-                if (Input.GetKey(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     gameController.tryPlace1(playerMouse.x, playerMouse.y);
                 }
@@ -68,15 +67,5 @@ public class unitPlaceScript : MonoBehaviour
                 }
                 break;
         }
-
-        if (!isPlayer1 && Input.GetKeyDown(KeyCode.Slash))
-        {
-            gameController.tryPlace2(playerMouse.x, playerMouse.y);
-        }
-    }
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("unit"))
-            Physics.IgnoreCollision(other.collider, capCollider);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class unitScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float moveSpd;
+    public float moveSpd;
     public Rigidbody2D rb;
     void Start()
     {
@@ -16,5 +16,13 @@ public class unitScript : MonoBehaviour
     void Update()
     {
         rb.AddForce(new Vector2(moveSpd, 0));
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Terrain") == true)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, moveSpd * 10);
+        }
     }
 }
