@@ -18,6 +18,7 @@ public class unitScript : MonoBehaviour
         rb.AddForce(new Vector2(moveSpd, 0));
     }
 
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Terrain") == true)

@@ -250,9 +250,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1067176107}
   playerMouse: {x: 0, y: 0}
-  movementSpeed: 1
+  movementSpd: 0
+  controlSpd: 6
   rb: {fileID: 159979733}
   isPlayer1: 0
+  moveVector: {x: 0, y: 0}
 --- !u!1 &215863806
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +777,7 @@ Transform:
   m_GameObject: {fileID: 670568991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: -180, y: 20, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -795,9 +797,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 1067176107}
   playerMouse: {x: 0, y: 0}
-  movementSpeed: 1
+  movementSpd: 6
+  controlSpd: 6
   rb: {fileID: 670568992}
   isPlayer1: 1
+  moveVector: {x: 0, y: 0}
 --- !u!1 &854953694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1285,7 @@ GameObject:
   - component: {fileID: 1629704867}
   - component: {fileID: 1629704866}
   m_Layer: 0
-  m_Name: base2
+  m_Name: teamBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1365,7 +1369,7 @@ GameObject:
   - component: {fileID: 1885421784}
   - component: {fileID: 1885421783}
   m_Layer: 0
-  m_Name: base1
+  m_Name: enemyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885421782}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 250, y: -42, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
