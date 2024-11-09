@@ -5,26 +5,35 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    public GameObject playerUnit, player1Hold, player2Hold;
+    public GameObject playerUnit, player1Hold, player2Hold, conveyorMask, unitCard;
+    public List<GameObject> cards = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("SpawnCards", 3, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void tryPlace1(float x, float y)
+    void SpawnCards()
     {
-        Instantiate(playerUnit, player1Hold.transform);
+        if (Mathf.Round(Random.value * 3) == 1)
+        {
+            Instantiate(unitCard, conveyorMask.transform);
+        }
     }
 
-    public void tryPlace2(float x, float y)
+    public void tryPlace(float x, float y, Transform pos)
     {
-        Instantiate(playerUnit, player2Hold.transform);
+        if (cards.Count > 0)
+        {
+            cards[1].GetComponent<unitCardScript>().UseCard();
+            Instantiate(playerUnit, pos);
+        }
     }
+
 }

@@ -26,7 +26,7 @@ public class unitPlaceScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    gameController.tryPlace1(playerMouse.x, playerMouse.y);
+                    gameController.tryPlace(playerMouse.x, playerMouse.y, transform);
                 }
 
                 if (Input.GetKey(KeyCode.W))
@@ -52,7 +52,7 @@ public class unitPlaceScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Slash))
                 {
-                    gameController.tryPlace2(playerMouse.x, playerMouse.y);
+                    gameController.tryPlace(playerMouse.x, playerMouse.y, transform);
                 }
 
                 if (Input.GetKey(KeyCode.UpArrow))
