@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
     void SpawnCards()
     {
-        if (Mathf.Round(Random.value * 3) == 1)
+        if (Mathf.Round(Random.value * 3) == 1 && (cards.Count == 0 || cards[cards.Count - 1].transform.position.x >= -150))
         {
             Instantiate(unitCard, conveyorMask.transform);
         }
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     {
         if (cards.Count > 0)
         {
-            cards[1].GetComponent<unitCardScript>().UseCard();
+            cards[0].GetComponent<unitCardScript>().UseCard();
             Instantiate(playerUnit, pos);
         }
     }

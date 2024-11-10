@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class unitCardScript : MonoBehaviour
 {
     public GameController gameController;
     private RectTransform rectTransform;
-    private bool stopped;
-    public Rigidbody2D rb;
+    public bool stopped;
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        gameController.cards.Add(gameObject);
         GetComponent<BoxCollider2D>().enabled = true;
         rectTransform = GetComponent<RectTransform>();
-        gameController.cards.Add(gameObject);
-        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -25,15 +26,12 @@ public class unitCardScript : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (gameController.cards.IndexOf(gameObject) == 0)
+            stopped = false;
         if (rectTransform.position.x > 190)
-            rectTransform.position = new Vector2(190, rectTransform.position.y);
-        else
-        {
-            if (!stopped)
-                rb.velocity = new Vector3(35, 0, 0);
-            else
-                rb.velocity = Vector3.zero;
-        }
+            stopped = true;
+        if (!stopped)
+            transform.position += new Vector3(1, 0, 0);
     }
 
     public void UseCard()
@@ -42,8 +40,12 @@ public class unitCardScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
         stopped = true;
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        stopped = false;
     }
 }
