@@ -13,7 +13,7 @@ public class unitScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.AddForce(new Vector2(moveSpd, 0));
     }
