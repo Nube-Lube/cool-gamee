@@ -96,7 +96,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8704881487408064196}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 98b2fd1b55fbf5e4eaa29fc6479aaa09, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 9.8
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 98b2fd1b55fbf5e4eaa29fc6479aaa09, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d004decd0a4807c468e9efd6fcaf89c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpd: 4
+  moveSpd: 32
   rb: {fileID: 5279071637433747934}
