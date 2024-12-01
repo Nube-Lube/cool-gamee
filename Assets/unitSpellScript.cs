@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class unitCardScript : MonoBehaviour
+public class unitSpellScript : MonoBehaviour
 {
     public GameController gameController;
     private RectTransform rectTransform;
@@ -13,9 +13,9 @@ public class unitCardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Resources/card0");
         destroy = false;
-        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        //gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        gameController.cards.Add(gameObject);
         GetComponent<BoxCollider2D>().enabled = true;
         rectTransform = GetComponent<RectTransform>();
     }
@@ -28,17 +28,16 @@ public class unitCardScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-            if (gameController.cards.IndexOf(gameObject) == 0)
-                stopped = false;
-            if (rectTransform.position.x > -65)
-                stopped = true;
-            if (!stopped)
-                transform.position += new Vector3(1, 0, 0);
+        if (gameController.cards.IndexOf(gameObject) == 0)
+            stopped = false;
+        if (rectTransform.position.x > -65)
+            stopped = true;
+        if (!stopped)
+            transform.position += new Vector3(1, 0, 0);
     }
 
     public void UseCard()
     {
-        gameController.type.Remove(gameController.cards.IndexOf(gameObject));
         gameController.cards.Remove(gameObject);
         GetComponent<Animation>().Play();
         GetComponent<BoxCollider2D>().enabled = false;

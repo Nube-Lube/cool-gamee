@@ -162,4 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpd: 32
+  health: 0
   rb: {fileID: 5279071637433747934}
