@@ -13,6 +13,6 @@ public class enemyPlacePos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(0, Random.value * 40);
+        transform.position = new Vector2(250, Random.value * 40);
     }
 }

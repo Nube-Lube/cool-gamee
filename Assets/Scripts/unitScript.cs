@@ -22,7 +22,8 @@ public class unitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(new Vector2(moveSpd, 0));
+        //rb.AddForce(new Vector2(moveSpd, 0));
+        rb.velocity = new Vector2(moveSpd, rb.velocity.y);
     }
 
 
@@ -31,7 +32,7 @@ public class unitScript : MonoBehaviour
         if (other.gameObject.CompareTag("Terrain") == true)
         {
             //jump if hit terrain
-            rb.velocity = new Vector2(rb.velocity.x, moveSpd * 0.9f);
+            rb.velocity = new Vector2(rb.velocity.x, moveSpd * 1.5f);
         }
     }
     private void OnCollisionStay2D(Collision2D other)

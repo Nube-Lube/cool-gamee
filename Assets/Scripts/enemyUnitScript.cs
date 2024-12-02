@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class enemyUnitScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float moveSpd;
+    public float moveSpd, health, speed;
     public Rigidbody2D rb;
     private GameController gameController;
     void Start()
@@ -19,7 +19,7 @@ public class enemyUnitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(new Vector2(moveSpd * -1, 0));
+        rb.velocity = new Vector2(moveSpd * -1, rb.velocity.y);
     }
 
 
@@ -27,7 +27,7 @@ public class enemyUnitScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Terrain") == true)
         {
-            rb.velocity = new Vector2(rb.velocity.x, moveSpd * 0.9f);
+            rb.velocity = new Vector2(rb.velocity.x, moveSpd * 1.5f);
         }
     }
 }

@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("spawnCards", 3, 1);
+        InvokeRepeating("placeEnemy", 0, 1);
     }
 
     // Update is called once per frame
@@ -34,7 +35,13 @@ public class GameController : MonoBehaviour
 
     public void placeEnemy()
     {
-        newEnemy = Instantiate(enemyUnit);
+        if (Mathf.Round(Random.value * 2) == 1)
+        {
+            int typ = (int)Mathf.Round(Random.value * 1);
+            newEnemy = Instantiate(enemyUnit);
+            newEnemy.GetComponent<unitScript>().health = health[typ];
+            newEnemy.GetComponent<unitScript>().moveSpd = speed[typ];
+        }
     }
 
     public void tryPlace(float x, float y, Transform pos)

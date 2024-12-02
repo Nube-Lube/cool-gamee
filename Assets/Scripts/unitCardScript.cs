@@ -38,7 +38,7 @@ public class unitCardScript : MonoBehaviour
 
     public void UseCard()
     {
-        gameController.type.Remove(gameController.cards.IndexOf(gameObject));
+        gameController.type.RemoveAt(gameController.cards.IndexOf(gameObject));
         gameController.cards.Remove(gameObject);
         GetComponent<Animation>().Play();
         GetComponent<BoxCollider2D>().enabled = false;
