@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class unitSpellScript : MonoBehaviour
+public class spellCardScript : MonoBehaviour
 {
     public GameController gameController;
     private RectTransform rectTransform;
@@ -14,8 +14,8 @@ public class unitSpellScript : MonoBehaviour
     void Start()
     {
         destroy = false;
-        //gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        gameController.cards.Add(gameObject);
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        gameController.spells.Add(gameObject);
         GetComponent<BoxCollider2D>().enabled = true;
         rectTransform = GetComponent<RectTransform>();
     }
@@ -30,15 +30,15 @@ public class unitSpellScript : MonoBehaviour
     {
         if (gameController.cards.IndexOf(gameObject) == 0)
             stopped = false;
-        if (rectTransform.position.x > -65)
+        if (rectTransform.position.x < 65)
             stopped = true;
         if (!stopped)
-            transform.position += new Vector3(1, 0, 0);
+            transform.position += new Vector3(-1, 0, 0);
     }
 
     public void UseCard()
     {
-        gameController.cards.Remove(gameObject);
+        gameController.spells.Remove(gameObject);
         GetComponent<Animation>().Play();
         GetComponent<BoxCollider2D>().enabled = false;
         destroy = true;

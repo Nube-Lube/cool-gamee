@@ -13,7 +13,7 @@ public class unitCardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Resources/card0");
+        //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Resources/card0");
         destroy = false;
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         GetComponent<BoxCollider2D>().enabled = true;

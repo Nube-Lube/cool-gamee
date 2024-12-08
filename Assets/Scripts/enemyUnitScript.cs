@@ -21,6 +21,13 @@ public class enemyUnitScript : MonoBehaviour
     {
         rb.velocity = new Vector2(moveSpd * -1, rb.velocity.y);
     }
+    void Update()
+    {
+        if (health < 1)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -28,6 +35,16 @@ public class enemyUnitScript : MonoBehaviour
         if (other.gameObject.CompareTag("Terrain") == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, moveSpd * 1.5f);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("unit") == true)
+        {
+            //attack enemy and take damage
+            health--;
         }
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject playerUnit, player1Hold, player2Hold, conveyorMask, unitCard, enemyUnit, newUnit, newEnemy, newCard;
+    public GameObject playerUnit, spellUnit, player1Hold, player2Hold, conveyorMask, conveyor2Mask, unitCard, spellCard, enemyUnit, newUnit, newEnemy, newCard, newSpell;
     public Transform enemyPosition;
-    public List<GameObject> cards = new List<GameObject>();
+    public List<GameObject> cards = new List<GameObject>(), spells = new List<GameObject>();
     public List<int> type = new List<int>();
     public List<int> health = new List<int>();
     public List <int> speed = new List<int>();
@@ -31,6 +31,12 @@ public class GameController : MonoBehaviour
             cards.Add(newCard);
             type.Add((int)Mathf.Round(Random.value * 1));
         }
+
+        if (Mathf.Round(Random.value * 6) == 1 && (spells.Count == 0 || cards[cards.Count - 1].transform.position.x <= 150))
+        {
+            newSpell = Instantiate(spellCard, conveyor2Mask.transform);
+            spells.Add(newSpell);
+        }
     }
 
     public void placeEnemy()
@@ -52,6 +58,15 @@ public class GameController : MonoBehaviour
             newUnit.GetComponent<unitScript>().health = health[type[0]];
             newUnit.GetComponent<unitScript>().moveSpd = speed[type[0]];
             cards[0].GetComponent<unitCardScript>().UseCard();
+        }
+    }
+
+    public void trySpell(float x, float y, Transform pos)
+    {
+        if (spells.Count > 0)
+        {
+            newSpell = Instantiate(spellUnit, pos);
+            spells[0].GetComponent<spellCardScript>().UseCard();
         }
     }
 
