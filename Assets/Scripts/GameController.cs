@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject playerUnit, spellUnit, player1Hold, player2Hold, conveyorMask, conveyor2Mask, unitCard, spellCard, enemyUnit, newUnit, newEnemy, newCard, newSpell;
-    public Transform enemyPosition;
+    public Transform enemyPosition, spellPosition;
     public List<GameObject> cards = new List<GameObject>(), spells = new List<GameObject>();
     public List<int> type = new List<int>();
     public List<int> health = new List<int>();

@@ -1390,6 +1390,7 @@ MonoBehaviour:
   newCard: {fileID: 0}
   newSpell: {fileID: 0}
   enemyPosition: {fileID: 753572069}
+  spellPosition: {fileID: 159979736}
   cards: []
   spells: []
   type: 
