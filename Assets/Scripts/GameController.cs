@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public Transform enemyPosition, spellPosition;
     public List<GameObject> cards = new List<GameObject>(), spells = new List<GameObject>();
     public List<int> type = new List<int>();
+    public List<int> spellType = new List<int>();
     public List<int> health = new List<int>();
     public List <int> speed = new List<int>();
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
         {
             newSpell = Instantiate(spellCard, conveyor2Mask.transform);
             spells.Add(newSpell);
+            spellType.Add((int)Mathf.Round(Random.value * 1));
         }
     }
 
@@ -43,10 +45,8 @@ public class GameController : MonoBehaviour
     {
         if (Mathf.Round(Random.value * 2) == 1)
         {
-            int typ = (int)Mathf.Round(Random.value * 1);
             newEnemy = Instantiate(enemyUnit);
-            newEnemy.GetComponent<unitScript>().health = health[typ];
-            newEnemy.GetComponent<unitScript>().moveSpd = speed[typ];
+            newEnemy.GetComponent<enemyUnitScript>().type = (int)Mathf.Round(Random.value * 1);
         }
     }
 

@@ -1394,6 +1394,7 @@ MonoBehaviour:
   cards: []
   spells: []
   type: 
+  spellType: 
   health: 190000000f000000
   speed: 1000000020000000
 --- !u!4 &1067176108

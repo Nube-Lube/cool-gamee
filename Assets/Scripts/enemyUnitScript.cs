@@ -7,6 +7,7 @@ public class enemyUnitScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpd, health, speed;
+    public int type;
     public Rigidbody2D rb;
     private GameController gameController;
     void Start()
@@ -14,6 +15,8 @@ public class enemyUnitScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         transform.position = gameController.enemyPosition.position;
+        health = gameController.health[type];
+        moveSpd = gameController.speed[type];
     }
 
     // Update is called once per frame
