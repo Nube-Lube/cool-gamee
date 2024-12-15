@@ -25,7 +25,7 @@ public class spellUnitScript : MonoBehaviour
     void FixedUpdate()
     {
         //rb.AddForce(new Vector2(moveSpd, 0));
-        rb.velocity += new Vector2(0, -0);
+        rb.velocity += new Vector2(0, -1);
     }
 
 

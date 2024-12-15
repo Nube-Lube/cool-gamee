@@ -5,7 +5,7 @@ using UnityEngine;
 public class conveyorScroll : MonoBehaviour
 {
     public float scrollSpd;
-    void Update()
+    void FixedUpdate()
     {
         GetComponent<SpriteRenderer>().material.mainTextureOffset = new Vector2(-1 * scrollSpd * Time.time, 0);
     }

@@ -11,7 +11,7 @@ public class enemyPlacePos : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position = new Vector2(250, Random.value * 40);
     }
