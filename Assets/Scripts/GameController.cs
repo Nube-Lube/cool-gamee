@@ -38,12 +38,14 @@ public class GameController : MonoBehaviour
 
     public void Pause()
     {
+        Time.timeScale = 0;
         shop.SetActive(true);
         paused = true;
     }
 
     public void Unpause()
     {
+        Time.timeScale = 1;
         shop.SetActive(false);
         paused = false;
     }
