@@ -10,6 +10,7 @@ public class unitPlaceScript : MonoBehaviour
     public float movementSpd, controlSpd;
     public Rigidbody2D rb;
     public bool isPlayer1;
+    public int keys;
     public Vector2 moveVector;
     // Start is called before the first frame update
     void Start()
@@ -19,66 +20,57 @@ public class unitPlaceScript : MonoBehaviour
 
     void Update()
     {
-        moveVector *= 0.9f;
-        switch (isPlayer1)
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            case true:
-                transform.position = new Vector2(-200, transform.position.y);
-
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    gameController.tryPlace(playerMouse.x, playerMouse.y, transform);
-                }
-
-                if (Input.GetKey(KeyCode.W))
-                {
-                    moveVector += new Vector2(0, 1);
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    moveVector += new Vector2(-1, 0);
-                }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    moveVector += new Vector2(0, -1);
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    moveVector += new Vector2(1, 0);
-                }
-                break;
-
-            case false:
-                transform.position = new Vector2(-220, transform.position.y);
-
-                if (Input.GetKeyDown(KeyCode.Slash))
-                {
-                    gameController.tryPlace(playerMouse.x, playerMouse.y, transform);
-                }
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    moveVector += new Vector2(0, 1);
-                }
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    moveVector += new Vector2(-1, 0);
-                }
-                if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    moveVector += new Vector2(0, -1);
-                }
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    moveVector += new Vector2(1, 0);
-                }
-                break;
+            gameController.tryPlace(transform);
         }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            keys = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            keys = -1;
+        }
+        else
+        {
+            keys = 0;
+        }
+
 
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        moveVector *= 0.9f;
+        transform.position = new Vector2(-200, Mathf.Clamp(transform.position.y, -70, 0));
+        if (keys == 1)
+        {
+            if (!(transform.position.y < 0))
+            {
+                if (transform.eulerAngles.z < 60)
+                {
+                    transform.Rotate(0, 0, 1);
+                }
+            } else
+            {
+                transform.rotation = Quaternion.identity;
+                moveVector += new Vector2(0, 1);
+            }
+        }
+        if (keys == -1)
+        {
+            if (!(transform.position.y < 0) && (transform.eulerAngles.z > 0))
+            {
+                transform.Rotate(0, 0, -1);
+            } else
+            {
+                transform.rotation = Quaternion.identity;
+                moveVector += new Vector2(0, -1);
+            }
+        }
         rb.velocity *= 0.9f;
         rb.AddForce(moveVector * Time.deltaTime * controlSpd);
     }

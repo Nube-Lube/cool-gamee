@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public GameObject shop, playerUnit, spellUnit, player1Hold, player2Hold, conveyorMask, conveyor2Mask, unitCard, spellCard, enemyUnit, newUnit, newEnemy, newCard, newSpell;
     public Transform enemyPosition, spellPosition;
     public bool paused;
+    public int healthStat;
+    public int speedStat;
     public List<GameObject> cards = new List<GameObject>(), spells = new List<GameObject>();
     public List<int> type = new List<int>();
     public List<int> spellType = new List<int>();
@@ -53,14 +55,14 @@ public class GameController : MonoBehaviour
     {
         if (!paused)
         {
-            if (Mathf.Round(Random.value * 3) == 1 && (cards.Count == 0 || cards[cards.Count - 1].transform.position.x >= -150))
+            if (Mathf.Round(Random.value * 5) == 1 && (cards.Count == 0 || cards[cards.Count - 1].transform.position.x >= -150))
             {
                 newCard = Instantiate(unitCard, conveyorMask.transform);
                 cards.Add(newCard);
                 type.Add((int)Mathf.Round(Random.value * 1));
             }
 
-            if (Mathf.Round(Random.value * 6) == 1 && (spells.Count == 0 || cards[cards.Count - 1].transform.position.x <= 150))
+            if (Mathf.Round(Random.value * 7) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 150))
             {
                 newSpell = Instantiate(spellCard, conveyor2Mask.transform);
                 spells.Add(newSpell);
@@ -73,7 +75,7 @@ public class GameController : MonoBehaviour
     {
         if (!paused)
         {
-            if (Mathf.Round(Random.value * 2) == 1)
+            if (Mathf.Round(Random.value * 5) == 1)
             {
                 newEnemy = Instantiate(enemyUnit);
                 newEnemy.GetComponent<enemyUnitScript>().type = (int)Mathf.Round(Random.value * 1);
@@ -81,21 +83,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void tryPlace(float x, float y, Transform pos)
+    public void tryPlace(Transform pos)
     {
         if (!paused)
         {
             if (cards.Count > 0)
             {
                 newUnit = Instantiate(playerUnit, pos);
-                newUnit.GetComponent<unitScript>().health = health[type[0]];
-                newUnit.GetComponent<unitScript>().moveSpd = speed[type[0]];
+                newUnit.GetComponent<unitScript>().health = health[type[0]] * healthStat;
+                newUnit.GetComponent<unitScript>().moveSpd = speed[type[0]] * speedStat;
                 cards[0].GetComponent<unitCardScript>().UseCard();
             }
         }
     }
 
-    public void trySpell(float x, float y, Transform pos)
+    public void trySpell(Transform pos)
     {
         if (!paused)
         {
