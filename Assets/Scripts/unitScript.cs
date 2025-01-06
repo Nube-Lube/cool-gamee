@@ -40,6 +40,7 @@ public class unitScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("enemyUnit") == true)
         {
+            rb.velocity = new Vector2(moveSpd * -0.5f, rb.velocity.y + moveSpd * 0.5f);
             //attack enemy and take damage
             health--;
         }

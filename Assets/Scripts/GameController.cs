@@ -2,17 +2,23 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject shop, playerUnit, spellUnit, player1Hold, player2Hold, conveyorMask, conveyor2Mask, unitCard, spellCard, enemyUnit, newUnit, newEnemy, newCard, newSpell;
+    public GameObject shop, playerUnit, spellUnit, player1Hold, player2Hold, conveyor1Place, conveyor2Place, unitCard, spellCard, enemyUnit, newUnit, newEnemy, newCard, newSpell;
     public Transform enemyPosition, spellPosition;
+    public Vector3 spellCardPos;
+    public Shader k;
     public bool paused;
-    public int healthStat;
-    public int speedStat;
-    public List<GameObject> cards = new List<GameObject>(), spells = new List<GameObject>();
+    public float progress;
+    public int healthStat, speedStat, typ;
+    public List<Sprite> cardImages = new List<Sprite>();
+    public List<GameObject> cards = new List<GameObject>();
     public List<int> type = new List<int>();
+    public List<Sprite> spellImages = new List<Sprite>();
+    public List<GameObject> spells = new List<GameObject>();
     public List<int> spellType = new List<int>();
     public List<int> health = new List<int>();
     public List<int> speed = new List<int>();
@@ -57,16 +63,19 @@ public class GameController : MonoBehaviour
         {
             if (Mathf.Round(Random.value * 5) == 1 && (cards.Count == 0 || cards[cards.Count - 1].transform.position.x >= -150))
             {
-                newCard = Instantiate(unitCard, conveyorMask.transform);
+                typ = (int)Mathf.Round(Random.value * 1);
+                newCard = Instantiate(unitCard, conveyor1Place.transform);
                 cards.Add(newCard);
-                type.Add((int)Mathf.Round(Random.value * 1));
+                type.Add(typ);
+                newCard.GetComponent<SpriteRenderer>().sprite = cardImages[typ];
             }
 
-            if (Mathf.Round(Random.value * 7) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 150))
+            if (Mathf.Round(Random.value * 2) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 250))
             {
-                newSpell = Instantiate(spellCard, conveyor2Mask.transform);
+                newSpell = Instantiate(spellCard, conveyor2Place.transform);
                 spells.Add(newSpell);
                 spellType.Add((int)Mathf.Round(Random.value * 1));
+                newSpell.GetComponent<SpriteRenderer>().sprite = spellImages[typ];
             }
         }
     }

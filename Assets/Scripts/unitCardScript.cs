@@ -13,7 +13,6 @@ public class unitCardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Assets/Resources/card0");
         destroy = false;
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         GetComponent<BoxCollider2D>().enabled = true;
@@ -30,7 +29,7 @@ public class unitCardScript : MonoBehaviour
     {
             if (gameController.cards.IndexOf(gameObject) == 0)
                 stopped = false;
-            if (rectTransform.position.x > -65)
+            if (transform.position.x > -107)
                 stopped = true;
             if (!stopped)
                 transform.position += new Vector3(1, 0, 0);

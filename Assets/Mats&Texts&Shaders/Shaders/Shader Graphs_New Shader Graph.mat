@@ -27,7 +27,10 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _FIll: 1
+    - _FIll: 0.5
+    - _rotate: 0
+    - _shades: 2
+    - _shake: 0.1
     m_Colors:
     - _sidecolro: {r: 0.6946157, g: 0.38877648, b: 0.7294118, a: 0}
     - _topcolor: {r: 0.95238435, g: 0.533, b: 1, a: 1}
