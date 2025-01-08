@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class enemyUnitScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float moveSpd, health, speed;
+    public float moveSpd, bounce, health, speed;
     public int type;
     public Rigidbody2D rb;
     private GameController gameController;
@@ -22,7 +22,9 @@ public class enemyUnitScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveSpd * -1, rb.velocity.y);
+        bounce *= 0.93f;
+        bounce = Mathf.Clamp(bounce, -64, 0);
+        rb.velocity = new Vector2(moveSpd * -1 - bounce, rb.velocity.y);
     }
     void Update()
     {
@@ -46,6 +48,7 @@ public class enemyUnitScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("unit") == true)
         {
+            bounce -= moveSpd * 2;
             rb.velocity = new Vector2(moveSpd * 0.5f, rb.velocity.y + moveSpd * 0.5f);
             //attack enemy and take damage
             health--;

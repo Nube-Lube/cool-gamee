@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
                 newCard.GetComponent<SpriteRenderer>().sprite = cardImages[typ];
             }
 
-            if (Mathf.Round(Random.value * 2) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 250))
+            if (Mathf.Round(Random.value * 7) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 250))
             {
                 newSpell = Instantiate(spellCard, conveyor2Place.transform);
                 spells.Add(newSpell);
@@ -99,8 +99,7 @@ public class GameController : MonoBehaviour
             if (cards.Count > 0)
             {
                 newUnit = Instantiate(playerUnit, pos);
-                newUnit.GetComponent<unitScript>().health = health[type[0]] * healthStat;
-                newUnit.GetComponent<unitScript>().moveSpd = speed[type[0]] * speedStat;
+                newUnit.GetComponent<unitScript>().typ = type[0];
                 cards[0].GetComponent<unitCardScript>().UseCard();
             }
         }

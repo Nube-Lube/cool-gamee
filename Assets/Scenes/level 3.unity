@@ -1833,12 +1833,12 @@ MonoBehaviour:
   newSpell: {fileID: 0}
   enemyPosition: {fileID: 753572069}
   spellPosition: {fileID: 159979736}
-  spellCardPos: {x: 280, y: -126.29, z: 0}
+  spellCardPos: {x: 240, y: -126.29, z: 0}
   k: {fileID: 0}
   paused: 0
   progress: 0
-  healthStat: 0
-  speedStat: 0
+  healthStat: 1
+  speedStat: 1
   typ: 0
   cardImages:
   - {fileID: 21300000, guid: 18f5d69f2e9ce4345a62a150aa7e9417, type: 3}
