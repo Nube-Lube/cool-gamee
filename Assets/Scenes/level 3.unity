@@ -1859,7 +1859,7 @@ MonoBehaviour:
   mass:
   - 1.5
   - 0.9
-  - 3
+  - 14
   unitShapes:
   - {fileID: 8861968376045764182, guid: 275805e9db60c4f4eac45ac393021367, type: 3}
   - {fileID: 8861968376045764182, guid: 82c0d9453600cc84e8b5b68d0bb42f9f, type: 3}

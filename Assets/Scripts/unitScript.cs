@@ -28,6 +28,7 @@ public class unitScript : MonoBehaviour
         health = gameController.health[typ] * gameController.healthStat;
         moveSpd = gameController.speed[typ] * gameController.speedStat;
         mass = gameController.mass[typ];
+        rb.mass = mass;
         rb.velocity = gameController.unitPosition.transform.right * moveSpd * 3;
         if (typ == 2)
         {
@@ -51,7 +52,7 @@ public class unitScript : MonoBehaviour
         bounce *= 0.93f;
         bounce = Mathf.Clamp(bounce, -64, 0);
         if (typ == 2)
-            rb.velocity = new Vector2(moveSpd / ((transform.position.y + 170) / 85) + bounce, rb.velocity.y);
+            rb.velocity = new Vector2(moveSpd / ((transform.position.y + 170) / 85) + bounce, Mathf.Clamp(rb.velocity.y, -50, 50));
         else
             rb.velocity = new Vector2(moveSpd + bounce, rb.velocity.y);
     }
@@ -71,7 +72,8 @@ public class unitScript : MonoBehaviour
         {
             sprite.color = Color.Lerp(sprite.color, new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0), 0.95f);
             bounce -= moveSpd * 2f / mass;
-            rb.velocity = new Vector2(0, rb.velocity.y + moveSpd * 0.5f / mass);
+            if (Mathf.Abs(rb.velocity.y) < 75)
+                rb.velocity = new Vector2(0, rb.velocity.y + moveSpd * 0.6f / mass);
             //attack enemy and take damage
             health--;
         }
