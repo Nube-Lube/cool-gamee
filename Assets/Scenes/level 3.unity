@@ -1833,6 +1833,7 @@ MonoBehaviour:
   newSpell: {fileID: 0}
   enemyPosition: {fileID: 753572069}
   spellPosition: {fileID: 159979736}
+  unitPosition: {fileID: 0}
   spellCardPos: {x: 240, y: -126.29, z: 0}
   k: {fileID: 0}
   paused: 0
@@ -1840,20 +1841,29 @@ MonoBehaviour:
   healthStat: 1
   speedStat: 1
   typ: 0
+  cardCt: 3
   cardImages:
+  - {fileID: 21300000, guid: 18f5d69f2e9ce4345a62a150aa7e9417, type: 3}
+  - {fileID: 21300000, guid: f650fc3edd6b6f14c8353182f6342e34, type: 3}
+  - {fileID: 21300000, guid: 57a8bab4583a2a4499c058996178fef0, type: 3}
+  spellImages:
   - {fileID: 21300000, guid: 18f5d69f2e9ce4345a62a150aa7e9417, type: 3}
   - {fileID: 21300000, guid: f650fc3edd6b6f14c8353182f6342e34, type: 3}
   - {fileID: 21300000, guid: 57a8bab4583a2a4499c058996178fef0, type: 3}
   cards: []
   type: 
-  spellImages:
-  - {fileID: 21300000, guid: 18f5d69f2e9ce4345a62a150aa7e9417, type: 3}
-  - {fileID: 21300000, guid: f650fc3edd6b6f14c8353182f6342e34, type: 3}
-  - {fileID: 21300000, guid: 57a8bab4583a2a4499c058996178fef0, type: 3}
   spells: []
   spellType: 
-  health: 190000000f000000
-  speed: 1000000020000000
+  health: 2d0000000f00000019000000
+  speed: 0c000000200000000a000000
+  mass:
+  - 1.5
+  - 0.9
+  - 3
+  unitShapes:
+  - {fileID: 8861968376045764182, guid: 275805e9db60c4f4eac45ac393021367, type: 3}
+  - {fileID: 8861968376045764182, guid: 82c0d9453600cc84e8b5b68d0bb42f9f, type: 3}
+  - {fileID: 8861968376045764182, guid: d6e6028ff08625d428d670f3b5a64154, type: 3}
 --- !u!4 &1067176108
 Transform:
   m_ObjectHideFlags: 0

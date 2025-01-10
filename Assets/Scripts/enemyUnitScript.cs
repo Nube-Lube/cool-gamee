@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D;
 
 public class enemyUnitScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float moveSpd, bounce, health, speed;
-    public int type;
+    private SpriteRenderer sprite;
+    private Color defaultColor;
+    public float moveSpd, bounce, health, speed, mass;
+    public int typ;
     public Rigidbody2D rb;
     private GameController gameController;
     void Start()
@@ -15,13 +18,17 @@ public class enemyUnitScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         transform.position = gameController.enemyPosition.position;
-        health = gameController.health[type];
-        moveSpd = gameController.speed[type];
+        health = gameController.health[typ];
+        moveSpd = gameController.speed[typ];
+        mass = gameController.mass[typ];
+        sprite = GetComponent<SpriteRenderer>();
+        defaultColor = sprite.color;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        sprite.color = Color.Lerp(sprite.color, defaultColor, 0.8f);
         bounce *= 0.93f;
         bounce = Mathf.Clamp(bounce, -64, 0);
         rb.velocity = new Vector2(moveSpd * -1 - bounce, rb.velocity.y);
@@ -48,8 +55,9 @@ public class enemyUnitScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("unit") == true)
         {
-            bounce -= moveSpd * 2;
-            rb.velocity = new Vector2(moveSpd * 0.5f, rb.velocity.y + moveSpd * 0.5f);
+            sprite.color = Color.Lerp(sprite.color, new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0), 0.95f);
+            bounce -= moveSpd * 2 / mass;
+            rb.velocity = new Vector2(moveSpd * 0.5f, rb.velocity.y + moveSpd * 0.5f / mass);
             //attack enemy and take damage
             health--;
         }

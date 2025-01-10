@@ -62,7 +62,7 @@ public class unitPlaceScript : MonoBehaviour
         }
         if (keys == -1)
         {
-            if (!(transform.position.y < 0) && (transform.eulerAngles.z > 0))
+            if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 61)
             {
                 transform.Rotate(0, 0, -1);
             } else
