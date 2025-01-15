@@ -32,7 +32,14 @@ public class unitCardScript : MonoBehaviour
             if (transform.position.x > -107)
                 stopped = true;
             if (!stopped)
-                transform.position += new Vector3(1, 0, 0);
+                {
+                    if (gameController.cards.IndexOf(gameObject) == 0)
+                        transform.position += new Vector3(Mathf.Clamp(1 * (-107 - transform.position.x) * 0.05f, 0, 1), 0, 0);
+
+                    else
+                        transform.position += new Vector3(Mathf.Clamp(1 * (gameController.cards[gameController.cards.IndexOf(gameObject) - 1].transform.position.x - 30 - transform.position.x) * 0.05f, 0, 1), 0, 0);
+                }
+
     }
 
     public void UseCard()

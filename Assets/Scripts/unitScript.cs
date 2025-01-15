@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,7 @@ public class unitScript : MonoBehaviour
 {
     // Start is called before the first frame
     public float moveSpd, bounce, health, mass;
+    private bool ko;
     private SpriteRenderer sprite;
     public int typ;
     private Color defaultColor;
@@ -29,6 +31,7 @@ public class unitScript : MonoBehaviour
         moveSpd = gameController.speed[typ] * gameController.speedStat;
         mass = gameController.mass[typ];
         rb.mass = mass;
+        ko = false;
         rb.velocity = gameController.unitPosition.transform.right * moveSpd * 3;
         if (typ == 2)
         {
@@ -39,22 +42,29 @@ public class unitScript : MonoBehaviour
 
     void Update()
     {
-        if (health < 1)
+        if (health < 1 && !ko)
         {
-            Destroy(gameObject);
+            OnDeath();
         }
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        sprite.color = Color.Lerp(sprite.color, defaultColor, 0.8f);
-        //rb.AddForce(new Vector2(moveSpd, 0));
-        bounce *= 0.93f;
-        bounce = Mathf.Clamp(bounce, -64, 0);
-        if (typ == 2)
-            rb.velocity = new Vector2(moveSpd / ((transform.position.y + 170) / 85) + bounce, Mathf.Clamp(rb.velocity.y, -50, 50));
-        else
-            rb.velocity = new Vector2(moveSpd + bounce, rb.velocity.y);
+        if (!ko)
+        {
+            sprite.color = Color.Lerp(sprite.color, defaultColor, 0.8f);
+            //rb.AddForce(new Vector2(moveSpd, 0));
+            bounce *= 0.93f;
+            bounce = Mathf.Clamp(bounce, -64, 0);
+            if (typ == 2)
+                rb.velocity = new Vector2(moveSpd / ((transform.position.y + 170) / 85) + bounce, Mathf.Clamp(rb.velocity.y, -50, 50));
+            else
+                rb.velocity = new Vector2(moveSpd + bounce, rb.velocity.y);
+        }
+        else if (transform.position.y < -120)
+        {
+            Destroy(gameObject);
+        }    
     }
 
 
@@ -73,9 +83,24 @@ public class unitScript : MonoBehaviour
             sprite.color = Color.Lerp(sprite.color, new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0), 0.95f);
             bounce -= moveSpd * 2f / mass;
             if (Mathf.Abs(rb.velocity.y) < 75)
-                rb.velocity = new Vector2(0, rb.velocity.y + moveSpd * 0.6f / mass);
+                rb.velocity = new Vector2(0, rb.velocity.y * 0.5f + moveSpd * 0.6f / mass);
             //attack enemy and take damage
             health--;
         }
+    }
+
+    private void OnDeath()
+    {
+        ko = true;
+        foreach (Collider2D c in gameObject.GetComponents<Collider2D>())
+        {
+            c.enabled = false;
+        }
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.9f, 0.6f);
+        rb.velocity = new Vector2(Random.value * 25 - 45, Random.value * 25 + 50);
+        rb.gravityScale = 20;
+        rb.freezeRotation = false;
+        rb.angularVelocity = Random.value * 150 - 75;
     }
 }

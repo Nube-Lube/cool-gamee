@@ -40,8 +40,13 @@ public class spellCardScript : MonoBehaviour
         if (transform.position.x < 107)
             stopped = true;
         if (!stopped)
-            rb.velocity = new Vector3(-28, 0, 0);
-        else
+        {
+            if (gameController.spells.IndexOf(gameObject) == 0)
+                rb.velocity = new Vector3(Mathf.Clamp(-28 * (transform.position.x - 107) * 0.05f, -28, 0), 0, 0);
+
+            else
+                rb.velocity = new Vector3(Mathf.Clamp(-28 * (transform.position.x - gameController.spells[gameController.spells.IndexOf(gameObject) - 1].transform.position.x - 30) * 0.05f, -28, 0), 0, 0);
+        } else 
             rb.velocity = Vector3.zero;
             //transform.position += new Vector3(-1, 0, 0);
     }
@@ -58,7 +63,6 @@ public class spellCardScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("fff");
         stopped = true;
     }
     private void OnTriggerExit2D(Collider2D other)

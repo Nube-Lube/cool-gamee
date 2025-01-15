@@ -32,7 +32,7 @@ public class enemyUnitScript : MonoBehaviour
         sprite.color = Color.Lerp(sprite.color, defaultColor, 0.8f);
         bounce *= 0.93f;
         bounce = Mathf.Clamp(bounce, -64, 0);
-        rb.velocity = new Vector2(moveSpd * -1 - bounce, Mathf.Clamp(rb.velocity.y, -50, 50));
+        rb.velocity = new Vector2(moveSpd * -1 - bounce, rb.velocity.y);
         Debug.Log(rb.velocity.y);
     }
     void Update()
@@ -60,7 +60,7 @@ public class enemyUnitScript : MonoBehaviour
             sprite.color = Color.Lerp(sprite.color, new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0), 0.95f);
             bounce -= moveSpd * 2 / mass;
             if (Mathf.Abs(rb.velocity.y) < 75)
-                rb.velocity = new Vector2(0, rb.velocity.y + moveSpd * 0.6f / mass);
+                rb.velocity = new Vector2(0, rb.velocity.y * 0.5f + moveSpd * 0.6f / mass);
             //attack enemy and take damage
             health--;
         }

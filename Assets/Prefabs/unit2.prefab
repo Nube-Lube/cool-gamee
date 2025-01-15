@@ -250,7 +250,7 @@ MonoBehaviour:
   moveSpd: 32
   bounce: 0
   health: 0
-  flash: 0
+  mass: 0
   typ: 0
   rb: {fileID: 5279071637433747934}
 --- !u!70 &-5556468664687992670

@@ -69,13 +69,14 @@ public class GameController : MonoBehaviour
             if (Mathf.Round(Random.value * 5) == 1 && (cards.Count == 0 || cards[cards.Count - 1].transform.position.x >= -150))
             {
                 typ = (int)Mathf.Round(Random.value * (cardCt - 1));
+                typ = 1;
                 newCard = Instantiate(unitCard, conveyor1Place.transform);
                 cards.Add(newCard);
                 type.Add(typ);
                 newCard.GetComponent<SpriteRenderer>().sprite = cardImages[typ];
             }
 
-            if (Mathf.Round(Random.value * 7) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 250))
+            if (Mathf.Round(Random.value * 14) == 1 && (spells.Count == 0 || spells[spells.Count - 1].transform.position.x <= 250))
             {
                 typ = (int)Mathf.Round(Random.value * (cardCt - 1));
                 newSpell = Instantiate(spellCard, conveyor2Place.transform);
@@ -93,7 +94,7 @@ public class GameController : MonoBehaviour
             if (Mathf.Round(Random.value * 5) == 1)
             {
                 newEnemy = Instantiate(enemyUnit);
-                newEnemy.GetComponent<enemyUnitScript>().typ = (int)Mathf.Round(Random.value * (cardCt - 1));
+                newEnemy.GetComponent<enemyUnitScript>().typ = 1;//(int)Mathf.Round(Random.value * (cardCt - 1));
             }
         }
     }
